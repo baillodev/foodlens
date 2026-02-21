@@ -8,7 +8,7 @@ Prenez une photo de votre repas et obtenez instantanement les informations nutri
 
 - **Backend** : FastAPI (Python) - API REST, orchestration IA, base de donnees
 - **Frontend** : Flutter (Dart) - Application mobile multiplateforme
-- **IA** : API de reconnaissance alimentaire via RapidAPI
+- **IA** : Spoonacular API (reconnaissance alimentaire + nutrition)
 - **Stockage images** : Cloudinary
 
 ## Architecture
@@ -16,7 +16,7 @@ Prenez une photo de votre repas et obtenez instantanement les informations nutri
 ```
 Flutter App  -->  FastAPI  -->  Cloudinary (upload image)
                     |
-                    +-------->  RapidAPI (analyse IA)
+                    +-------->  Spoonacular (analyse IA + nutrition)
                     |
                     +-------->  SQLite (historique)
 ```
@@ -26,7 +26,7 @@ Flutter App  -->  FastAPI  -->  Cloudinary (upload image)
 - Python 3.11+
 - Flutter 3.x+
 - Compte Cloudinary (gratuit)
-- Cle API RapidAPI (plan gratuit disponible)
+- Cle API Spoonacular (plan gratuit sur spoonacular.com)
 
 ## Installation
 
@@ -56,7 +56,7 @@ flutter run
 Copier `backend/.env.example` vers `backend/.env` et remplir les variables :
 
 ```
-RAPIDAPI_KEY=votre_cle_rapidapi
+SPOONACULAR_API_KEY=votre_cle_spoonacular
 CLOUDINARY_CLOUD_NAME=votre_cloud_name
 CLOUDINARY_API_KEY=votre_api_key
 CLOUDINARY_API_SECRET=votre_api_secret

@@ -9,9 +9,9 @@ FoodLens suit une architecture client-serveur avec integration d'un service IA e
 │                    Pipeline FoodLens                        │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  Flutter App   -->   FastAPI      -->   API IA (RapidAPI)   │
-│  (Capture)          (Orchestration)     (Reconnaissance)    │
-│                                                             │
+│  Flutter App   -->   FastAPI      -->   Spoonacular API     │
+│  (Capture)          (Orchestration)     (Reconnaissance +   │
+│                                          Nutrition)         │
 │  Resultats    <--   FastAPI      <--   Nutrition Data       │
 │  (Affichage)        (Structuration)    (Calories, macros)   │
 │                                                             │
@@ -23,7 +23,7 @@ FoodLens suit une architecture client-serveur avec integration d'un service IA e
 1. **Capture** : L'utilisateur prend une photo ou selectionne une image depuis la galerie (Flutter)
 2. **Envoi** : L'image est envoyee au backend via POST multipart/form-data
 3. **Hebergement** : Le backend upload l'image sur Cloudinary pour obtenir une URL publique
-4. **Analyse IA** : FastAPI appelle l'API RapidAPI avec l'URL de l'image
+4. **Analyse IA** : FastAPI appelle l'API Spoonacular avec l'URL de l'image
 5. **Structuration** : Le backend transforme la reponse IA, calcule les totaux nutritionnels et sauvegarde en base
 6. **Restitution** : Les resultats sont renvoyes au frontend et affiches
 
@@ -41,7 +41,7 @@ backend/
 │   └── history.py       # GET /api/v1/history, /api/v1/history/{id}
 └── services/
     ├── cloudinary_service.py   # Upload d'image vers Cloudinary
-    ├── rapidapi_service.py     # Appel a l'API de reconnaissance alimentaire
+    ├── spoonacular_service.py  # Appel a l'API Spoonacular (reconnaissance + nutrition)
     └── history_service.py      # Operations CRUD SQLite
 ```
 
@@ -53,7 +53,7 @@ Deux tables :
 
 ### Securite
 
-- Les cles API (RapidAPI, Cloudinary) sont stockees exclusivement cote serveur dans `.env`
+- Les cles API (Spoonacular, Cloudinary) sont stockees exclusivement cote serveur dans `.env`
 - Validation stricte des fichiers uploades (type MIME, taille max)
 - CORS configure pour autoriser le frontend
 
