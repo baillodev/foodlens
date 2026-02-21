@@ -4,36 +4,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class ServingSize(BaseModel):
-    servingWeight: float
-    unit: str
-
-
-class Nutrition(BaseModel):
-    calories: float
-    protein: float
-    totalCarbs: float
-    totalFat: float
-
-
-class FoodItem(BaseModel):
-    food_id: str
-    name: str
-    score: float
-    nutrition: Nutrition
-    servingSizes: list[ServingSize]
-
-
-class FoodGroup(BaseModel):
-    group: str
-    items: list[FoodItem]
-
-
-class RapidAPIResponse(BaseModel):
-    is_food: bool
-    results: list[FoodGroup]
-
-
 class NutritionOut(BaseModel):
     calories: float
     protein: float
