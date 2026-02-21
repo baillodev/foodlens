@@ -2,12 +2,27 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 import '../config/api_config.dart';
 import '../models/analysis_result.dart';
 import '../models/history_entry.dart';
 
 class ApiService {
+  static MediaType _getMediaType(String path) {
+    final ext = path.split('.').last.toLowerCase();
+    switch (ext) {
+      case 'png':
+        return MediaType('image', 'png');
+      case 'webp':
+        return MediaType('image', 'webp');
+      case 'gif':
+        return MediaType('image', 'gif');
+      default:
+        return MediaType('image', 'jpeg');
+    }
+  }
+
   static Future<AnalysisResult> analyzeFood(File imageFile) async {
     final request = http.MultipartRequest(
       'POST',
@@ -15,7 +30,11 @@ class ApiService {
     );
 
     request.files.add(
-      await http.MultipartFile.fromPath('file', imageFile.path),
+      await http.MultipartFile.fromPath(
+        'file',
+        imageFile.path,
+        contentType: _getMediaType(imageFile.path),
+      ),
     );
 
     final streamedResponse = await request.send().timeout(
