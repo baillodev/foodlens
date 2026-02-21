@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryColor = Color(0xFF4CAF50);
-  static const Color secondaryColor = Color(0xFF66BB6A);
-  static const Color accentColor = Color(0xFFFF9800);
-  static const Color backgroundColor = Color(0xFFF5F5F5);
+  // Palette principale (cohérente avec le document de rapport)
+  static const Color primaryColor = Color(0xFF008575);    // teal profond
+  static const Color secondaryColor = Color(0xFF6A9C93);  // sauge douce
+  static const Color accentColor = Color(0xFFFF5E0E);     // orange (usage minimal)
+  static const Color backgroundColor = Color(0xFFF8F6F3); // blanc chaud
   static const Color surfaceColor = Colors.white;
-  static const Color errorColor = Color(0xFFE53935);
+  static const Color errorColor = Color(0xFFD32F2F);
+  static const Color textColor = Color(0xFF545454);        // gris charbon
 
-  static const Color proteinColor = Color(0xFF42A5F5);
-  static const Color carbsColor = Color(0xFFFFCA28);
-  static const Color fatColor = Color(0xFFEF5350);
-  static const Color caloriesColor = Color(0xFF66BB6A);
+  // Macros nutritionnels
+  static const Color proteinColor = Color(0xFF008575);    // teal
+  static const Color carbsColor = Color(0xFFFF712C);      // orange doux
+  static const Color fatColor = Color(0xFF695D46);        // brun chaud
+  static const Color caloriesColor = Color(0xFF6A9C93);   // sauge
 
   static ThemeData get lightTheme {
     return ThemeData(
@@ -38,10 +41,15 @@ class AppTheme {
         ),
       ),
       cardTheme: CardThemeData(
-        elevation: 2,
+        elevation: 1,
+        color: surfaceColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
+      ),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: textColor),
+        bodyMedium: TextStyle(color: textColor),
       ),
     );
   }
