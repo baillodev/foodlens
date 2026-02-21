@@ -19,12 +19,12 @@ class FoodItemCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: Colors.green[50],
+                color: const Color(0xFF008575).withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.restaurant,
-                color: Colors.green[700],
+                color: Color(0xFF008575),
               ),
             ),
             const SizedBox(width: 12),
