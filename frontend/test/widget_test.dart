@@ -53,13 +53,13 @@ void main() {
       expect(find.text('85%'), findsOneWidget);
     });
 
-    testWidgets('shows green for high score', (tester) async {
+    testWidgets('shows teal for high score', (tester) async {
       await tester.pumpWidget(
         MaterialApp(home: Scaffold(body: ConfidenceIndicator(score: 90))),
       );
 
       final text = tester.widget<Text>(find.text('90%'));
-      expect(text.style?.color, Colors.green);
+      expect(text.style?.color, const Color(0xFF008575));
     });
 
     testWidgets('shows orange for medium score', (tester) async {
@@ -68,16 +68,16 @@ void main() {
       );
 
       final text = tester.widget<Text>(find.text('60%'));
-      expect(text.style?.color, Colors.orange);
+      expect(text.style?.color, const Color(0xFFFF712C));
     });
 
-    testWidgets('shows red for low score', (tester) async {
+    testWidgets('shows brown for low score', (tester) async {
       await tester.pumpWidget(
         MaterialApp(home: Scaffold(body: ConfidenceIndicator(score: 30))),
       );
 
       final text = tester.widget<Text>(find.text('30%'));
-      expect(text.style?.color, Colors.red);
+      expect(text.style?.color, const Color(0xFF695D46));
     });
   });
 

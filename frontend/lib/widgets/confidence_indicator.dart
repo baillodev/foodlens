@@ -6,9 +6,9 @@ class ConfidenceIndicator extends StatelessWidget {
   const ConfidenceIndicator({super.key, required this.score});
 
   Color get _color {
-    if (score >= 80) return Colors.green;
-    if (score >= 50) return Colors.orange;
-    return Colors.red;
+    if (score >= 80) return const Color(0xFF008575);  // teal
+    if (score >= 50) return const Color(0xFFFF712C);  // orange doux
+    return const Color(0xFF695D46);                    // brun
   }
 
   @override
